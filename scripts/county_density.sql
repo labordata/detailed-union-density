@@ -1,5 +1,5 @@
-SELECT STATEFIP,
-       COUNTY,
+SELECT substr( '00' || STATEFIP, -2, 2) AS STATEFIP,
+       substr('00000' || COUNTY, -5, 5) AS COUNTY,
        COUNT(*) FILTER (
                         WHERE EARNWT > 0.0) AS observations,
        SUM(EARNWT/120) AS employment,
