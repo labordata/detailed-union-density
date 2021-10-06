@@ -1,10 +1,10 @@
-geographies.geojson : cps.db
-	spatialite $< < scripts/cps_geography.sql
+.PHONY: all
+all : cps_geography.geojson union_density.geojson
 
-	ogr2ogr -f GeoJSON $@ $< -sql 'select * from cps_geography where GEOMETRY IS NOT NULL' -dialect sqlite
+cps_geography.geojson : cps.db
+	ogr2ogr -f GeoJSON $@ $< -sql 'select * from cps_geography' -dialect sqlite
 
-
-omnibus.geojson : cps.db
+union_density.geojson : cps.db
 	ogr2ogr -f GeoJSON $@ $< -sql @scripts/omnibus.sql -dialect sqlite
 
 cps.db : cb_2018_us_county_20m.shp cb_2018_us_cbsa_20m.shp cb_2018_us_state_20m.shp us_principal_cities.shp cps.csv city_map.csv 
