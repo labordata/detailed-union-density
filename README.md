@@ -34,3 +34,6 @@ This repository contains data for the estimated employment, union membership, an
 > pip install -r requirements.txt
 > make
 ```
+
+## Sources
+The union membershp data from the Current Population Survey comes via [IPUMS](https://cps.ipums.org/cps/). Their terms of service do now allow redistribution of their data, so that is why it is not included in this repository. The shapefiles come from the [US Census](https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-file.html) and [Andrew Van Leuven](https://twitter.com/__vanleuven/status/1286596286905331712).
