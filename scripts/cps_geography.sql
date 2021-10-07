@@ -28,11 +28,15 @@ SELECT
     STATEFIP,
     COUNTY,
     INDIVIDCC,
-    ST_MULTI (COALESCE(ST_CollectionExtract (ST_INTERSECTION (city.GEOMETRY, county.GEOMETRY), 3), city.GEOMETRY)) AS GEOMETRY
+    ST_MULTI (COALESCE(ST_CollectionExtract (ST_INTERSECTION (COALESCE(city.GEOMETRY, rc.GEOMETRY), county.GEOMETRY), 3), city.GEOMETRY, rc.GEOMETRY)) AS GEOMETRY
 FROM
     city_map
-    INNER JOIN us_principal_cities AS city USING (city_fips)
-    LEFT JOIN cb_2018_us_county_20m AS county ON county.geoid = substr('00000' || COUNTY, -5, 5);
+    LEFT JOIN us_principal_cities AS city USING (city_fips)
+    LEFT JOIN remaining_cities AS rc ON city_map.city_fips = rc.GEOID
+    LEFT JOIN cb_2018_us_county_20m AS county ON county.geoid = substr('00000' || COUNTY, -5, 5)
+WHERE
+    city.GEOMETRY IS NOT NULL
+    OR rc.GEOMETRY IS NOT NULL;
 
 -- add counties
 INSERT INTO cps_geography
