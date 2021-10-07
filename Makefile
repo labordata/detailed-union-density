@@ -1,5 +1,13 @@
 .PHONY: all
-all : cps_geography.geojson union_density.geojson
+all : cps_geography.geojson union_density.geojson county_density.geojson \
+      metro_density.geojson city_density.geojson county_density.csv \
+      metro_density.csv city_density.csv
+
+%.csv : %.geojson
+	ogr2ogr -f csv $@ $<
+
+%_density.geojson : cps.db
+	ogr2ogr -f GeoJSON $@ $< -sql @scripts/$*_density.sql -dialect sqlite	
 
 cps_geography.geojson : cps.db
 	ogr2ogr -f GeoJSON $@ $< -sql 'select * from cps_geography' -dialect sqlite
