@@ -2,7 +2,7 @@
 
 The [Current Population Survey](https://en.wikipedia.org/wiki/Current_Population_Survey) asks questions about union membership and representation and provides some geographic information about respondents.
 
-The survey always reports the state of the respondent. If the subdivision is populous enough, CPS will also report if the respondent is in one of 260 [CBSAs](https://en.wikipedia.org/wiki/Core-based_statistical_area), one of 281 counties, or one of 97 cities. The states, CBSAs, counties, and cities combine and intersect to produce 578 distinct geographies.
+The survey always reports the state of the respondent. If the subdivision is populous enough, CPS will also report if the respondent is in one of 260 [CBSAs](https://en.wikipedia.org/wiki/Core-based_statistical_area), one of 281 counties, or one of 97 cities. The states, CBSAs, counties, and cities combine and intersect to produce 578 distinct geographies. These geographies are current from 2016 to the time of this writing, 2021.
 
 This repository contains data for the estimated employment, union membership, and union representation for each of those geographies. It's the most geographically detailed information about union density in the United States that I know of.
 
