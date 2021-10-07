@@ -27,8 +27,10 @@ This repository contains mapping data for the estimated employment, union member
 - spatialite
 - wget
 - gdal
+- python3
 
 ### To run
 ```bash
+> pip install -r requirements.txt
 > make
 ```
