@@ -89,13 +89,13 @@ GROUP BY
     STATEFIP;
 
 DELETE FROM cps_geography
-WHERE geoid IN (
+WHERE geoid NOT IN (
         SELECT
             geoid
         FROM
-            cps_geograph y
-        LEFT JOIN cps USING (METFIPS, STATEFIP, COUNTY, INDIVIDCC)
-    WHERE
-        cps.METFIPS IS NULL);
+            cps_geography
+            INNER JOIN cps USING (METFIPS, STATEFIP, COUNTY, INDIVIDCC)
+        WHERE
+            YEAR >= 2016);
 
 COMMIT;
